@@ -30,16 +30,26 @@ def set_game(matrix, table_char, size):
             if learn_possibility(matrix, size, table_char) == False:
                 print("Not winner")
                 validate = input("Do You Want resize table [y/n]: ")
-                if validate == 'y':
+                validate = validate.replace("\n", "")
+                if validate == "y":
                     size = int(input("New size: "))
                     matrix = create_table_game(size)
+                    print("-----New Game----")
+                    continue
+                else:
+                    print_matrix(matrix, size)
+                    print("\n----End Game----")
+                    exit(0)
             else:
                 print_matrix(matrix, size)
+                matrix = create_table_game(size)
                 print("\n----End Game----")
         pose = input()
         pose = pose.replace("\n", "")
         if pose == "exit" or pose == "forfait":
             break
+        if pose == "print":
+            print_matrix(matrix, size)
         pose = pose.split(" ")
         if len(pose) != 2:
             continue
