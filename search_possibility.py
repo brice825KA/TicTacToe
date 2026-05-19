@@ -3,18 +3,20 @@
 
 def valid_list(ligne):
     first = ligne[0]
-    letter = [True, first]
     for char in ligne:
         if char != first:
-            letter[0] = False
-            return letter
-    return letter
+            return False
+    return True
 
 
 def horizontal(matrix, size):
     newmatrix = []
+    answer = True
     for i in matrix:
         newmatrix.append(i)
+        answer = valid_list(i)
+        if answer == True:
+            print(f"Winner is {i[0]}")
     return newmatrix
 
 
@@ -25,6 +27,10 @@ def vertical(matrix, size):
         lab = []
         for j in range(size):
             lab.append(matrix[j][i])
+        newmatrix.append(lab)
+        answer = valid_list(lab)
+        if answer == True:
+            print(f"Winner is {lab[0]}")
     return newmatrix
 
 
@@ -37,23 +43,14 @@ def diagonal(matrix, size):
         diagtwo.append(matrix[i][size - 1 - i])
     diagonal.append(diagone)
     diagonal.append(diagtwo)
+    for ligne in diagonal:
+        answer = valid_list(ligne)
+        if answer == True:
+            print(f"Winner is {ligne[0]}")
     return diagonal
 
 
 def learn_possibility(matrix, size, table_char):
-    table = []
-    answer = True
-    table.append(horizontal(matrix, size))
-    table.append(vertical(matrix, size))
-    table.append(diagonal(matrix, size))
-
-    print(f"{table}")
-    for box in table:
-        for ligne in box:
-            answer = valid_list(ligne)
-            if answer[0] == "True":
-                print(f"le vainceur est {answer[1]}")
-                exit(0)
-            else:
-                continue
-    return 0
+    horizontal(matrix, size)
+    vertical(matrix, size)
+    diagonal(matrix, size)
