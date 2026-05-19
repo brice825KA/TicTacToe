@@ -27,9 +27,15 @@ def set_game(matrix, table_char, size):
         cout = cout_matrix(matrix, size)
         if cout == 0:
             print("\n------Learn matrix------")
-            learn_possibility(matrix, size, table_char)
-            print_matrix(matrix, size)
-            print("\n----End Game----")
+            if learn_possibility(matrix, size, table_char) == False:
+                print("Not winner")
+                validate = input("Do You Want resize table [y/n]: ")
+                if validate == 'y':
+                    size = int(input("New size: "))
+                    matrix = create_table_game(size)
+            else:
+                print_matrix(matrix, size)
+                print("\n----End Game----")
         pose = input()
         pose = pose.replace("\n", "")
         if pose == "exit" or pose == "forfait":

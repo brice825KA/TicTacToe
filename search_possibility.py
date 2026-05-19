@@ -17,6 +17,7 @@ def horizontal(matrix, size):
         answer = valid_list(i)
         if answer == True:
             print(f"Winner is {i[0]}")
+            return True
     return newmatrix
 
 
@@ -31,6 +32,7 @@ def vertical(matrix, size):
         answer = valid_list(lab)
         if answer == True:
             print(f"Winner is {lab[0]}")
+            return True
     return newmatrix
 
 
@@ -47,10 +49,15 @@ def diagonal(matrix, size):
         answer = valid_list(ligne)
         if answer == True:
             print(f"Winner is {ligne[0]}")
+            return True
     return diagonal
 
 
 def learn_possibility(matrix, size, table_char):
-    horizontal(matrix, size)
-    vertical(matrix, size)
-    diagonal(matrix, size)
+    if horizontal(matrix, size) == True:
+        return True
+    if vertical(matrix, size) == True:
+        return True
+    if diagonal(matrix, size) == True:
+        return True
+    return False
