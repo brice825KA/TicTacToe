@@ -3,8 +3,8 @@
 import math
 import sys
 
-from usage import usage
 from search_possibility import learn_possibility
+from usage import usage
 
 
 def print_matrix(matrix, size):
@@ -39,12 +39,13 @@ def set_game(matrix, table_char, size):
                 print("Char invalid")
                 continue
             else:
-                if matrix[(int(pose[1]) - 1) // size][int(pose[1]) % size] != 0:
+                if matrix[(int(pose[1])) // size][int(pose[1]) % size] != 0:
                     print("Position invalid")
                     continue
                 else:
-                    matrix[(int(pose[1]) - 1) // size][int(pose[1]) % size] = pose[0]
+                    matrix[(int(pose[1])) // size][int(pose[1]) % size] = pose[0]
                     learn_possibility(matrix, size, table_char)
+                    print("\n")
                     print_matrix(matrix, size)
 
 
