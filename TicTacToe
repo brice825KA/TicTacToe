@@ -16,7 +16,7 @@ def cout_matrix(matrix, size):
     cout = 0
     for ligne in matrix:
         for row in ligne:
-            if row != "0":
+            if row == 0:
                 cout += 1
     return cout
 
@@ -24,16 +24,17 @@ def cout_matrix(matrix, size):
 def set_game(matrix, table_char, size):
     while 1:
         pose = []
-        print("\n---New matrix game---")
-        print_matrix(matrix, size)
-        if matrix.count(0) != size * size:
+        cout = cout_matrix(matrix, size)
+        if cout == 0:
             print("\n------Learn matrix------")
             learn_possibility(matrix, size, table_char)
-            print("----End Game----")
+            print_matrix(matrix, size)
+            print("\n----End Game----")
         pose = input()
-        if pose == 'exit' or pose == 'forfait':
+        pose = pose.replace("\n", "")
+        if pose == "exit" or pose == "forfait":
             break
-        pose = pose.split(' ')
+        pose = pose.split(" ")
         if len(pose) != 2:
             continue
         if (len(pose[0]) != 1 or len(pose[1]) != 1) and (
