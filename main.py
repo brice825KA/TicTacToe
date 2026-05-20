@@ -44,6 +44,7 @@ def set_game(matrix, table_char, size):
                 print_matrix(matrix, size)
                 matrix = create_table_game(size)
                 print("\n----End Game----")
+                exit(0)
         pose = input()
         pose = pose.replace("\n", "")
         if pose == "exit" or pose == "forfait":
@@ -58,6 +59,9 @@ def set_game(matrix, table_char, size):
         ):
             continue
         else:
+            if pose[1].isdigit() == False:
+                print("Char invalid")
+                continue
             if int(pose[1]) > math.pow(size, 2) or int(pose[1]) < 0:
                 print("Position invalid")
                 continue
